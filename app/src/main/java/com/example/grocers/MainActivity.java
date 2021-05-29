@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -16,8 +17,8 @@ import android.widget.LinearLayout;
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.example.grocers.Adapters.PlateAdapter;
 import com.example.grocers.EmailLoginRegister.EmailLoginActivity;
-import com.example.grocers.EmailLoginRegister.EmailRegisterActivity;
 import com.example.grocers.Models.PlateModel;
+import com.example.grocers.PhoneLoginRegister.PhoneLoginActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private List<PlateModel> plateModelList;
     private PlateAdapter plateAdapter;
     private LinearLayout phoneLinearLayout,emailLinearLayout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,8 +67,21 @@ public class MainActivity extends AppCompatActivity {
 
         autoScroll();
         emailOnClick();
-        //phoneOnClick();
+        loginWithPhoneOnClick();
+
     }
+
+    private void loginWithPhoneOnClick() {
+        phoneLinearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(MainActivity.this, PhoneLoginActivity.class);
+                startActivity(i);
+                Animatoo.animateCard(MainActivity.this);
+            }
+        });
+    }
+
     public void emailOnClick(){
         emailLinearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,14 +93,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void phoneOnClick() {
-        phoneLinearLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-            }
-        });
-    }
 
     public void autoScroll() {
     final int speedScroll = 0;
@@ -106,7 +114,6 @@ public class MainActivity extends AppCompatActivity {
     };
     handler.postDelayed(runnable,speedScroll);
     }
-
 
 
 }

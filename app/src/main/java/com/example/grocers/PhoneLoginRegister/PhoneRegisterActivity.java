@@ -1,4 +1,4 @@
-package com.example.grocers.EmailLoginRegister;
+package com.example.grocers.PhoneLoginRegister;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,41 +8,30 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.TextView;
 
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.example.grocers.MainActivity;
 import com.example.grocers.R;
 
-public class EmailLoginActivity extends AppCompatActivity {
-    private TextView noAccount;
+public class PhoneRegisterActivity extends AppCompatActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_email_login);
-
+        setContentView(R.layout.activity_phone_register);
 
         if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.KITKAT){
             Window w = getWindow();
             w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         }
-        noAccount = findViewById(R.id.noAccount);
-
-        noAccountOnclick();
-
+    }
+    public void AlreadyPhoneAccount(View view){
+        Intent i = new Intent(PhoneRegisterActivity.this,PhoneLoginActivity.class);
+        startActivity(i);
+        Animatoo.animateSlideRight(PhoneRegisterActivity.this);
+        finish();
     }
 
-    private void noAccountOnclick() {
-        noAccount.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(EmailLoginActivity.this,EmailRegisterActivity.class);
-                startActivity(i);
-                Animatoo.animateSwipeLeft(EmailLoginActivity.this);
-                finish();
-            }
-        });
-    }
     public void backToMain(View view){
         Intent i = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(i);

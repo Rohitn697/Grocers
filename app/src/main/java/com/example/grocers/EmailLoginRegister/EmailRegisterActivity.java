@@ -11,6 +11,7 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
+import com.example.grocers.MainActivity;
 import com.example.grocers.R;
 
 public class EmailRegisterActivity extends AppCompatActivity {
@@ -41,7 +42,11 @@ public class EmailRegisterActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
 
-
+    public void backToMain(View view){
+        Intent i = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(i);
+        finish();
     }
 }
