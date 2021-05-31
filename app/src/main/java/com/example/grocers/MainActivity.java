@@ -115,5 +115,11 @@ public class MainActivity extends AppCompatActivity {
     handler.postDelayed(runnable,speedScroll);
     }
 
+    public void gotoHome(View view){
+        Intent i = new Intent(MainActivity.this,HomeActivity.class);
+        startActivity(i);
+        finish();
+        Animatoo.animateCard(MainActivity.this);
+    }
 
 }

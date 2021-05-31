@@ -19,14 +19,15 @@
     <Button
         android:id="@+id/skipButton"
         android:layout_width="wrap_content"
-        android:elevation="6dp"
         android:layout_height="40dp"
-        android:textColor="#B8B3B3"
-        android:textAllCaps="false"
-        android:background="@drawable/skip_button"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
+        android:background="@drawable/skip_button"
+        android:elevation="6dp"
+        android:onClick="gotoHome"
         android:text="Skip"
+        android:textAllCaps="false"
+        android:textColor="#B8B3B3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
