@@ -2,20 +2,27 @@ package com.example.grocers.Fragments;
 
 import android.os.Bundle;
 
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.grocers.R;
+import com.google.android.material.navigation.NavigationView;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link OrdersFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class OrdersFragment extends Fragment {
+public class OrdersFragment extends Fragment implements View.OnClickListener{
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -29,6 +36,13 @@ public class OrdersFragment extends Fragment {
     public OrdersFragment() {
         // Required empty public constructor
     }
+
+    DrawerLayout drawerLayout;
+    ImageView navigationBar;
+    NavigationView navigationView;
+    private TextView One,Two;
+    private View view;
+
 
     /**
      * Use this factory method to create a new instance of
@@ -61,6 +75,44 @@ public class OrdersFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_orders, container, false);
+         view = inflater.inflate(R.layout.fragment_orders, container, false);
+        onSetNavigationDrawerEvents();
+        return view;
     }
+
+    private void onSetNavigationDrawerEvents() {
+        drawerLayout = (DrawerLayout) view.findViewById(R.id.drawerLayout);
+        navigationView = (NavigationView) view.findViewById(R.id.navigationView);
+
+        drawerLayout.openDrawer(GravityCompat.START);
+
+        navigationBar = (ImageView) view.findViewById(R.id.navigationBar);
+
+        One = (TextView) view.findViewById(R.id.oneTextView);
+        Two = (TextView) view.findViewById(R.id.twoTextView);
+
+        navigationBar.setOnClickListener(this);
+        One.setOnClickListener(this);
+        Two.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.navigationBar:
+                drawerLayout.openDrawer(navigationView, true);
+                break;
+            case R.id.oneTextView:
+                Toast.makeText(getContext(), "One", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.twoTextView:
+                Toast.makeText(getContext(), "Two", Toast.LENGTH_SHORT).show();
+                break;
+        }
+    }
+
+    private void showToast(String message){
+        Toast.makeText(getContext(),message,Toast.LENGTH_SHORT).show();
+    }
+
 }
